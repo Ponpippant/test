@@ -1,0 +1,696 @@
+/* ====== index ====== */
+/* ====== Base / Reset ====== */
+* {
+  box-sizing: border-box;                   /* คำนวณขนาด element รวม padding และ border */
+  margin: 0;                                /* ลบค่า margin เริ่มต้นของทุก element */
+  padding: 0;                               /* ลบค่า padding เริ่มต้นของทุก element */
+}
+
+:root{
+  --primary: #ff6a00;                     /* กำหนดตัวแปรสีหลักเป็นสีส้ม */
+  --primary-dark:#e25500;                 /* กำหนดตัวแปรสีส้มเข้ม */
+  --text:#222;                            /* กำหนดตัวแปรสีข้อความหลักเป็นสีเทาเข้ม */
+  --muted:#666;                           /* กำหนดตัวแปรสีข้อความรองเป็นสีเทาอ่อน */
+  --bg:#f7f7f9;                           /* กำหนดตัวแปรสีพื้นหลังหลัก */
+  --ink:#1f2226;                          /* กำหนดตัวแปรสีหมึกหรือพื้นหลังเข้ม ใช้กับ header/footer */
+  --white:#fff;                           /* กำหนดตัวแปรสีขาว */
+}
+
+html, body { height: 100%; }                /* กำหนดให้ html และ body มีความสูงเต็มจอ */
+body{
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans Thai",
+               "Noto Sans", Arial, sans-serif; /* กำหนดชุดฟอนต์หลัก */
+  color: var(--text);                       /* กำหนดสีข้อความใน body เป็นสีหลัก */
+  background: var(--bg);                    /* กำหนดพื้นหลังของ body เป็นสีจากตัวแปร bg */
+  line-height: 1.65;                        /* กำหนดระยะห่างระหว่างบรรทัดให้เหมาะสม */
+}
+
+
+/* ====== Header / Top Nav ====== */
+header{
+  position: sticky;                         /* ทำให้ header ติดอยู่ด้านบนขณะเลื่อนหน้า */
+  top: 0;                                   /* กำหนดให้ติดบนสุดของหน้าจอ */
+  z-index: 100;                             /* จัดลำดับการซ้อนให้อยู่เหนือ element อื่น */
+  background: var(--white);                 /* กำหนดพื้นหลัง header เป็นสีขาว */
+  box-shadow: 0 2px 12px rgba(0,0,0,.06); /* เพิ่มเงาใต้ header ให้ดูแยกจากเนื้อหา */
+  padding: 14px 20px;                       /* กำหนดระยะห่างภายใน header */
+  display: flex;                            /* ใช้ Flexbox จัดเรียง element ภายใน header */
+  justify-content: space-between;           /* จัดให้องค์ประกอบใน header ชิดซ้ายและขวาสุด */
+  align-items: center;                      /* จัดให้องค์ประกอบใน header อยู่กึ่งกลางแนวตั้ง */
+  gap: 12px;                                /* กำหนดช่องว่างระหว่างองค์ประกอบใน header */
+}
+
+.logo{
+  color: var(--primary);                    /* กำหนดสีข้อความโลโก้เป็นสีหลัก */
+  font-weight: 800;                         /* กำหนดความหนาของโลโก้ให้หนามาก */
+  font-size: 1.35rem;                       /* กำหนดขนาดตัวอักษรโลโก้ */
+  letter-spacing: .2px;                     /* เพิ่มระยะห่างระหว่างตัวอักษรเล็กน้อย */
+}
+
+nav a{
+  color: var(--ink);                        /* กำหนดสีข้อความของลิงก์ในเมนู */
+  text-decoration: none;                    /* ลบเส้นใต้ของลิงก์ */
+  font-weight: 600;                         /* ทำให้ข้อความของลิงก์หนา */
+  padding: 10px 14px;                       /* กำหนดระยะห่างภายในของลิงก์ */
+  border-radius: 10px;                      /* ทำมุมของลิงก์ให้โค้งมน */
+  display: inline-block;                    /* แสดงลิงก์เป็นบล็อกภายในบรรทัด */
+  transition: background .2s ease, color .2s ease, transform .1s ease; /* เพิ่มเอฟเฟกต์การเปลี่ยนแปลงเมื่อ hover หรือ active */
+}
+
+nav a:hover{ background: rgba(0,0,0,.06); } /* เมื่อชี้เมาส์ ลิงก์จะมีพื้นหลังเทาอ่อน */
+nav a:active{ transform: translateY(1px); } /* เมื่อคลิก ลิงก์จะขยับลงเล็กน้อยเหมือนปุ่มกด */
+
+
+/* ====== Hero Section ====== */
+.hero {
+  max-width: 900px;                         /* จำกัดความกว้างของ hero section ไม่ให้เต็มจอ */
+  margin: 20px auto;                        /* จัด hero section ให้อยู่กึ่งกลางแนวนอน */
+  padding: 0 16px;                          /* กำหนดระยะห่างด้านข้างของ hero */
+  text-align: center;                       /* จัดข้อความภายใน hero ให้อยู่กึ่งกลาง */
+}
+
+.hero > img {
+  width: 100%;                              /* ให้รูปภาพกว้างเต็มพื้นที่ของ hero */
+  height: auto;                             /* ให้ความสูงปรับอัตโนมัติตามสัดส่วน */
+  border-radius: 12px;                      /* ทำมุมของรูปภาพให้โค้งมน */
+  display: block;                           /* แสดงรูปภาพเป็นบล็อก */
+  margin: 0 auto;                           /* จัดรูปภาพให้อยู่กึ่งกลางแนวนอน */
+}
+
+.hero h1 {
+  font-size: clamp(1.4rem, 2.2vw + 1rem, 2rem);     /* กำหนดขนาดตัวอักษรแบบ responsive */
+  margin-top: 18px;                         /* เพิ่มระยะห่างด้านบนของหัวข้อ */
+  font-weight: 800;                         /* กำหนดความหนาของตัวอักษรให้หนามาก */
+}
+
+.hero p {
+  color: var(--muted);                      /* กำหนดสีข้อความเป็นสีรองจากตัวแปร muted */
+  margin-top: 8px;                          /* เพิ่มระยะห่างด้านบนของย่อหน้า */
+  max-width: 700px;                         /* จำกัดความกว้างของข้อความให้อ่านง่ายขึ้น */
+  margin-left: auto;                        /* จัดย่อหน้าให้อยู่กึ่งกลางโดยใช้ margin ซ้าย */
+  margin-right: auto;                       /* จัดย่อหน้าให้อยู่กึ่งกลางโดยใช้ margin ขวา */
+}
+
+
+/* ปุ่มใน Hero */
+.hero-buttons {
+  display: flex;                            /* ใช้ Flexbox จัดเรียงปุ่ม */
+  justify-content: center;                  /* ปุ่มอยู่กึ่งกลางแนวนอน */
+  gap: 12px;                                /* กำหนดช่องว่างระหว่างปุ่ม */
+  margin-top: 16px;                         /* เพิ่มระยะห่างด้านบนของปุ่มจากเนื้อหาก่อนหน้า */
+  flex-wrap: wrap;                          /* ให้ปุ่มตัดบรรทัดใหม่ได้เมื่อพื้นที่ไม่พอ */
+}
+
+
+.btn-orange,
+.btn-outline{
+  text-decoration: none;                    /* ลบเส้นใต้ข้อความของปุ่ม */
+  font-weight: 700;                         /* กำหนดความหนาของข้อความในปุ่มให้หนาขึ้น */
+  padding: 10px 16px;                       /* กำหนดระยะห่างภายในปุ่ม */
+  border-radius: 10px;                      /* ทำมุมปุ่มให้โค้งมน */
+  display: inline-block;                    /* แสดงปุ่มเป็นบล็อกที่อยู่ในบรรทัดเดียวกัน */
+  transition: transform .08s ease, box-shadow .2s ease, background .2s ease, color .2s ease; /* เพิ่มเอฟเฟกต์การเปลี่ยนแปลงเมื่อ hover */
+}
+
+.btn-orange{
+  background: var(--primary);               /* กำหนดพื้นหลังปุ่มสีหลักจากตัวแปร --primary */
+  color: #fff;                            /* กำหนดตัวอักษรในปุ่มให้เป็นสีขาว */
+  box-shadow: 0 6px 14px rgba(255,106,0,.25);       /* เพิ่มเงาให้ปุ่มสีส้ม */
+}
+.btn-orange:hover{ background: var(--primary-dark); } /* เมื่อชี้เมาส์เปลี่ยนพื้นหลังเป็นสีส้มเข้ม */
+
+.btn-outline{
+  background: transparent;                  /* กำหนดพื้นหลังปุ่มให้โปร่งใส */
+  color: var(--primary);                    /* กำหนดสีข้อความในปุ่มเป็นสีหลัก */
+  border: 2px solid var(--primary);         /* ใส่เส้นขอบรอบปุ่มด้วยสีหลัก */
+}
+.btn-outline:hover{
+  color: #fff;                            /* เมื่อชี้เมาส์ ข้อความเปลี่ยนเป็นสีขาว */
+  background: var(--primary);               /* เมื่อชี้เมาส์ พื้นหลังเปลี่ยนเป็นสีหลัก */
+}
+
+
+/* ====== Footer ====== */
+footer{
+  background: var(--ink);                   /* กำหนดพื้นหลังของ footer เป็นค่าสีจากตัวแปร --ink */
+  color: #fff;                            /* กำหนดสีตัวอักษรใน footer เป็นสีขาว */
+  display: flex;                            /* ใช้ Flexbox จัดวาง element ภายใน footer */
+  justify-content: space-between;           /* จัดวาง element ให้ชิดซ้ายและขวาโดยมีช่องว่างระหว่างกลาง */
+  align-items: center;                      /* จัดให้องค์ประกอบภายใน footer อยู่กึ่งกลางในแนวตั้ง */
+  padding: 18px 24px;                       /* กำหนดระยะห่างด้านในของ footer */
+  flex-wrap: wrap;                          /* ให้ element ภายในตัดบรรทัดใหม่ได้เมื่อพื้นที่ไม่พอ */
+  font-size: .95rem;                        /* กำหนดขนาดตัวอักษรเล็กกว่าปกติเล็กน้อย */
+  gap: 8px;                                 /* กำหนดช่องว่างระหว่าง element ภายใน footer */
+}
+
+/* ===== Services Section ===== */
+.services{ max-width:1200px; margin:36px auto 28px; padding:0 16px; }
+.services-head{ text-align:center; margin-bottom:18px; }
+.services-head h2{ font-size:clamp(1.4rem,2.2vw + 1rem,2rem); font-weight:900; color:#1f2226; }
+
+
+/* Grid 3 ใบ */
+.services-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:26px; }
+
+/* Card */
+.service-card{
+  background:#fff; border:2px solid #e9e1da; border-radius:14px;
+  box-shadow:0 8px 18px rgba(0,0,0,.06);
+  overflow:hidden; padding:18px 18px 60px; position:relative;
+  transition: transform .15s ease, box-shadow .2s ease, border-color .2s ease;
+}
+.service-card:hover{ transform:translateY(-3px); border-color:#e4cdbb; box-shadow:0 12px 22px rgba(0,0,0,.1); }
+
+/* รูป */
+.service-media img{ width:100%; height:220px; object-fit:cover; border-radius:12px; display:block; }
+
+/* เนื้อหา */
+.service-body{ text-align:center; padding:12px 8px 0; }
+.service-body h3{ font-size:20px; font-weight:900; margin-bottom:8px; }
+.service-body p{ color:#444; line-height:1.7; }
+
+/* ปุ่ม LINE/โทร ลอยด้านล่าง */
+.service-actions{
+  position:absolute; left:0; right:0; bottom:12px;
+  display:flex; justify-content:center; gap:12px;
+}
+.btn-float{
+  width:44px; height:44px; border-radius:10px; color:#fff; text-decoration:none;
+  display:flex; align-items:center; justify-content:center;
+  box-shadow:0 8px 18px rgba(0,0,0,.15);
+  transition: transform .12s ease, box-shadow .2s ease;
+}
+.btn-float:hover{ transform:translateY(-2px); box-shadow:0 12px 24px rgba(0,0,0,.2); }
+.btn-line{ background:#10b981; }  /* เขียว LINE */
+.btn-call{ background:#ff7a1a; }  /* ส้ม โทร */
+
+/* Responsive */
+@media (max-width: 992px){ .services-grid{ grid-template-columns:repeat(2,1fr) } .service-media img{ height:210px } }
+@media (max-width: 640px){ .services-grid{ grid-template-columns:1fr } .service-media img{ height:200px } }
+
+
+
+.section-head {
+  text-align: center;
+  margin: 40px auto 20px;
+}
+
+.section-head h2 {
+  font-size: clamp(1.4rem,2.2vw + 1rem,2rem);
+  font-weight: 900;
+  color: #1f2226;
+  letter-spacing: .5px;
+}
+
+
+/* ===== Portfolio (เฉพาะรูปภาพ + Lightbox CSS-only) ===== */
+.portfolio{
+  max-width: 1200px;
+  margin: 24px auto 40px;
+  padding: 0 16px;
+}
+
+/* กริดรูปภาพ */
+.portfolio-grid{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+
+.portfolio-grid a{
+  display: block;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 14px rgba(0,0,0,.06);
+  background: #f2f2f4;
+  transition: transform .12s ease, box-shadow .2s ease, opacity .2s ease;
+}
+
+.portfolio-grid img{
+  width: 100%;
+  height: 180px;            /* ความสูง thumbnail */
+  object-fit: cover;
+  display: block;
+}
+
+.portfolio-grid a:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(0,0,0,.12);
+}
+
+/* Lightbox using :target */
+.lightbox{
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.86);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  padding: 24px;
+}
+
+.lightbox:target{ display: flex; }
+
+.lightbox img{
+  max-width: 92vw;
+  max-height: 86vh;
+  border-radius: 12px;
+  box-shadow: 0 12px 30px rgba(0,0,0,.35);
+  display: block;
+}
+
+/* ปุ่มปิด (มุมขวาบน) */
+.lb-close{
+  position: absolute;
+  top: 18px; right: 18px;
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.92);
+  box-shadow: 0 6px 16px rgba(0,0,0,.25);
+}
+.lb-close::before, .lb-close::after{
+  content:"";
+  position:absolute; inset: 8px;
+  background: transparent;
+  border-radius:2px;
+  transform: rotate(45deg);
+  box-shadow:
+    inset 0 0 0 2px #111;
+}
+.lb-close::after{ transform: rotate(-45deg); }
+
+/* Responsive */
+@media (max-width: 1024px){
+  .portfolio-grid{ grid-template-columns: repeat(3, 1fr); }
+  .portfolio-grid img{ height: 170px; }
+}
+@media (max-width: 768px){
+  .portfolio-grid{ grid-template-columns: repeat(2, 1fr); }
+  .portfolio-grid img{ height: 160px; }
+}
+@media (max-width: 460px){
+  .portfolio-grid{ grid-template-columns: 1fr; }
+  .portfolio-grid img{ height: 210px; }
+}
+
+
+/* ===== Company Section ===== */
+.company-section {
+  background: linear-gradient(135deg, #434a52, #2a2e33);  /* สีพื้นหลังส้ม */
+  color: white;                /* สีตัวอักษร */
+  text-align: center;          /* จัดกลางทั้งหมด */
+  padding: 70px 20px;          /* เว้นขอบในแนวตั้ง/แนวนอน */
+}
+
+.company-container {
+  max-width: 800px;            /* ความกว้างสูงสุดของเนื้อหา */
+  margin: 0 auto;
+}
+
+.company-section h2 {
+  font-size: clamp(1.5rem, 2vw + 1rem, 2.2rem);
+  font-weight: 900;
+  margin-bottom: 15px;
+  display: inline-block;
+  padding: 8px 20px;
+  border-radius: 4px;
+}
+
+.company-section p {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  display: inline-block;
+  padding: 6px 15px;
+  border-radius: 4px;
+  margin-bottom: 40px;
+}
+
+.company-qr img {
+  width: 160px;
+  height: 160px;
+  border-radius: 8px;
+  background: white;
+  padding: 10px;
+  margin-bottom: 30px;
+}
+
+.company-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.company-buttons a {
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
+  padding: 12px 24px;
+  border-radius: 30px;
+  transition: all 0.3s ease;
+}
+
+.btn-line {
+  background-color: #00B900;   /* สีเขียว LINE */
+}
+
+.btn-line:hover {
+  background-color: #009a00;
+}
+
+.btn-call {
+  background-color: #ff6700;   /* สีส้มเข้มปุ่มโทร */
+}
+
+.btn-call:hover {
+  background-color: #cc5200;
+}
+
+
+
+/* ====== line ====== */
+.floating-line {
+  position: fixed;                          /* ให้ปุ่มลอยตายตัว ไม่เลื่อนตามหน้า */
+  bottom: 20px;                             /* ห่างจากขอบล่าง 20px */
+  right: 20px;                              /* ห่างจากขอบขวา 20px */
+  z-index: 1000;                            /* ซ้อนอยู่บนสุด */
+}
+
+.floating-line a {
+  display: block;                           /* ลิงก์เป็นบล็อก */
+  width: 80px;                              /* ขนาดกรอบปุ่ม กว้าง 80px */
+  height: 80px;                             /* สูง 80px */
+  background-color: white;                /* พื้นหลังสีขาว */
+  border-radius: 15px;                      /* มุมโค้ง */
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25); /* เงา */
+  display: flex;                            /* ใช้ flex จัดเนื้อหาข้างใน */
+  justify-content: center;                  /* จัดโลโก้ให้อยู่ตรงกลางแนวนอน */
+  align-items: center;                      /* จัดโลโก้ให้อยู่ตรงกลางแนวตั้ง */
+  transition: transform 0.3s ease;          /* ทำเอฟเฟกต์เวลา hover */
+}
+
+.floating-line a:hover {
+  transform: scale(1.1);                    /* ขยายปุ่ม 10% ตอน hover */
+}
+
+.floating-line img {
+  width: 90%;                               /* โลโก้ LINE ขนาด 90% */
+  height: 90%;
+  display: block;
+  object-fit: contain;                      /* รักษาสัดส่วนโลโก้ */
+  border-radius: 12px;                      /* มุมโลโก้โค้งนิดหน่อย */
+}
+
+/* ====== Responsive ปรับขนาดในคอม,โทรศัพท์,แท็บเล็ต ====== */
+@media (max-width: 900px){
+  header{ padding: 12px 16px; }             /* ลดระยะ padding ของ header ให้กระชับขึ้นบนจอเล็ก */
+  .hero{ margin-top: 12px; }                /* ลดช่องว่างด้านบนของ hero section */
+  .hero > img{ height: 360px; }             /* ลดความสูงของภาพ hero ให้เล็กลง */
+}
+
+@media (max-width: 620px){
+  header{
+    flex-direction: column;                 /* เปลี่ยน header จากแนวนอนเป็นเรียงแนวตั้ง */
+    align-items: stretch;                   /* ยืดเมนู/โลโก้ให้เต็มความกว้าง */
+    gap: 6px;                               /* เว้นช่องว่างระหว่างบรรทัด */
+  }
+  nav{
+    display: flex;                          /* เมนูยังคงเป็น flex */
+    overflow-x: auto;                       /* ถ้าเมนูยาว ให้เลื่อนได้ในแนวนอน */
+    -webkit-overflow-scrolling: touch;      /* เพิ่มการเลื่อนแบบลื่นบนมือถือ */
+    gap: 6px;                               /* ระยะห่างระหว่างลิงก์เมนู */
+  }
+  nav a{ flex: 0 0 auto; }                  /* แต่ละเมนูคงขนาด ไม่ถูกยืด */
+  .hero{ padding: 0 12px; }                 /* ลด padding ด้านข้างของ hero section */
+  .hero > img{ height: 260px; }             /* ลดความสูงรูป hero ลงอีก */
+  footer{
+    flex-direction: column;                 /* Footer เปลี่ยนจากแถวเดียว เป็นซ้อนบรรทัด */
+    align-items: flex-start;                /* จัดให้อยู๋ชิดซ้าย */
+    padding: 16px;                          /* padding กระชับขึ้น */
+  }
+}
+
+/*=====contact=====*/
+.contact {
+  background-color: white;
+  margin: 40px auto;
+  padding: 40px;
+  max-width: 1100px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.contact h2 {
+  font-size: 26px;
+  color: #FF5C00;
+  border-bottom: 2px solid #FF5C00;
+  padding-bottom: 10px;
+  margin-bottom: 30px;
+  text-align: left;
+  font-weight: 700;
+}
+
+.contact-form-wrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+  justify-content: space-between;
+  align-items: stretch;
+}
+
+.contact form {
+  flex: 1 1 65%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-between;
+  align-content: flex-start;
+}
+
+.form-group {
+  flex: 1 1 48%;
+  display: flex;
+  flex-direction: column;
+  font-weight: bold;
+  color: #333;
+}
+
+.form-group.full-width {
+  flex: 1 1 100%;
+}
+
+.contact form input,
+.contact form select,
+.contact form textarea {
+  margin-top: 5px;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1em;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.contact form textarea {
+  height: 120px;
+}
+
+.contact form button {
+  padding: 14px 30px;
+  background-color: #0e1a4f;
+  color: white;
+  border: none;
+  font-weight: bold;
+  font-size: 1em;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background-color 0.3s ease;
+  width: 100%;
+}
+
+.contact form button:hover {
+  background-color: #081035;
+}
+
+.contact-aside {
+  flex: 1 1 35%;
+  background-color: #FF5C00;
+  color: white;
+  padding: 30px 30px 20px;
+  border-radius: 10px;
+  font-weight: 500;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  background-image: url('wave-orange-right.svg');
+  background-repeat: no-repeat;
+  background-position: bottom right;
+  background-size: cover;
+  height: auto;
+  min-height: 100%;
+  box-sizing: border-box;
+}
+
+.contact-aside h3 {
+  font-size: 22px;
+  margin-bottom: 20px;
+  line-height: 1.4em;
+  font-weight: 700;
+  margin-top: 0;
+}
+
+.contact-aside p {
+  font-size: 16px;
+  line-height: 1.6;
+  margin-top: 0;
+}
+
+
+/* ============ ABOUT ============ */
+.about {
+  margin: 0; /* เอาช่องว่างออก */
+}
+
+/* แถบหัวเรื่องด้านบน */
+.about-band {
+  background: linear-gradient(135deg, #FF7A00, #FF9A3D);
+  color:#fff;
+  text-align:center;
+  padding: 28px 16px;
+}
+
+.about-band h2 {
+  font-size: clamp(1.2rem, 1.2vw + 1.2rem, 2rem);
+  font-weight: 800;
+  letter-spacing: .5px;
+}
+
+
+/* กล่องเนื้อหา */
+.about-wrap {
+  max-width: 1000px;
+  margin: 20px auto 40px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 12px 30px rgba(0,0,0,.08);
+  padding: 40px 24px 46px;
+  position: relative;
+  overflow: hidden;
+  text-align: center; /* ✅ จัดเนื้อหาทั้งหมดให้อยู่กลางแนวนอน */
+}
+
+/* พื้นหลังลายจาง ๆ (ใส่รูปได้ถ้าต้องการ) */
+.about-wrap::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("img/about-bg.jpg") center/cover no-repeat;
+  opacity: .06;
+  pointer-events: none;
+}
+
+/* ข้อความหัวเรื่อง */
+.about-title {
+  position: relative;
+  display: inline-block; /* ✅ เพื่อให้เส้นหลังข้อความอยู่ตรงกลาง */
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #1f2226;
+  margin-bottom: 20px;
+}
+
+/* เส้นเน้นใต้ข้อความ */
+.about-title::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%); /* ✅ ทำให้เส้นอยู่ตรงกลางพอดี */
+  width: 80%; /* ✅ ความกว้างของเส้น (ปรับได้) */
+  height: 5px;
+  background: #f9c74f;
+  border-radius: 999px;
+  filter: drop-shadow(0 2px 0 rgba(0,0,0,.06));
+}
+
+
+/* ย่อหน้า */
+.about-lead{
+  text-align:center;
+  font-size: clamp(1rem, .6vw + .95rem, 1.35rem);
+  line-height: 1.9;
+  color:#2b2b2b;
+  max-width: 900px;
+  margin: 10px auto 14px;
+}
+.about-sub{
+  text-align:center;
+  color:#9e7d5f;                     /* น้ำตาลนุ่ม ๆ */
+  font-weight: 600;
+  margin: 6px auto 24px;
+}
+
+/* การ์ด QR */
+.about-qr{
+  display:flex; justify-content:center;
+  margin: 10px 0 22px;
+}
+.about-qr img{
+  width: 200px; height: 200px;       /* แสดงผล */
+  background:#fff;
+  padding: 14px;
+  border-radius: 14px;
+  box-shadow: 0 10px 24px rgba(0,0,0,.12);
+}
+
+
+/* ปุ่ม */
+.about-actions{
+  display:flex; justify-content:center; gap:16px; flex-wrap:wrap;
+}
+.btn{
+  text-decoration:none;
+  color:#fff;
+  font-weight: 700;
+  padding: 14px 22px;
+  border-radius: 999px;
+  box-shadow: 0 10px 22px rgba(0,0,0,.12);
+  transition: transform .08s ease, box-shadow .2s ease, background .2s ease;
+}
+.btn:hover{ transform: translateY(-2px); box-shadow:0 14px 26px rgba(0,0,0,.16); }
+.btn:active{ transform: translateY(0); }
+
+.btn-line{ background:#00b900; }
+.btn-line:hover{ background:#009a00; }
+
+.btn-call{ background:#ff6a00; }
+.btn-call:hover{ background:#e25500; }
+
+/* Responsive */
+@media (max-width: 680px){
+  .about-wrap{ padding: 32px 16px 38px; }
+  .about-qr img{ width: 170px; height:170px; }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

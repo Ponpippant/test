@@ -1,0 +1,65 @@
+/* รีเซ็ตค่าเบื้องต้น */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* จัด body ให้กล่องอยู่กลางจอ */
+body {
+  font-family: system-ui, "Noto Sans Thai", sans-serif;
+  background: #f7f7f9;              /* พื้นหลังอ่อน */
+  display: flex;                    /* ใช้ Flexbox จัดตำแหน่ง */
+  justify-content: center;          /* จัดกึ่งกลางแนวนอน */
+  align-items: center;              /* จัดกึ่งกลางแนวตั้ง */
+  height: 100vh;                    /* ความสูงเต็มหน้าจอ */
+  margin: 0;
+}
+
+/* กล่องขอบคุณ */
+.thankyou-container {
+  background: #fff;
+  padding: 40px 30px;
+  border-radius: 14px;
+  max-width: 600px;
+  width: 100%;
+  box-shadow: 0 10px 24px rgba(0,0,0,0.1);
+  text-align: center;               /* จัดข้อความให้อยู่กลาง */
+}
+
+/* หัวข้อ */
+.thankyou-container h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  font-weight: 800;
+}
+
+/* ข้อความ */
+.thankyou-container p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 30px;
+  color: #333;
+}
+
+/* ปุ่มกลับหน้าแรก */
+.btn-home {
+  display: inline-block;
+  padding: 12px 24px;
+  background: #ff5c00;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background 0.3s ease, transform 0.1s ease;
+}
+
+/* เมื่อ hover */
+.btn-home:hover {
+  background: #e14f00;
+}
+
+/* เมื่อกดคลิก */
+.btn-home:active {
+  transform: translateY(2px);
+}
